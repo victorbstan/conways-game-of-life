@@ -118,11 +118,11 @@ describe "board" do
 
     # expected neighbours map
     # 000
-    # 010
+    # 000 <- the actual item is reported as 0, for counting purposes
     # 100
     @board5x5.output(@board5x5.neighbours({row:3, col:3})).should eq <<-DOC.gsub(/^ {6}/, '')
       000
-      0x0
+      000
       100
     DOC
   end
