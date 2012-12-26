@@ -118,12 +118,26 @@ describe "board" do
 
     # expected neighbours map
     # 000
-    # 000 <- the actual item is reported as 0, for counting purposes
+    # 000 <- the actual item is reported as 0, for counting purposes (target item is dead centre, no pun intended)
     # 100
     @board5x5.output(@board5x5.neighbours({row:3, col:3})).should eq <<-DOC.gsub(/^ {6}/, '')
       000
       000
       100
     DOC
+  end
+
+  # .count { |i| i != 0 }
+  it "should be able to count neighbours" do
+    # count no neightbours
+    @board5x5.count_neighbours(@board5x5.neighbours({row:3, col:3})).should eq 0
+
+    # count one neighbour
+    entities = [
+      {row:3, col:3, val:1},
+      {row:4, col:2, val:1}
+    ]
+    @board5x5.seed(entities)
+    @board5x5.count_neighbours(@board5x5.neighbours({row:3, col:3})).should eq 1
   end
 end

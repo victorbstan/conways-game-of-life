@@ -80,4 +80,8 @@ class Board
       [n6, n7, n8]
     ]
   end
+
+  def count_neighbours(param)
+    param.flatten.count { |i| i != 0 }
+  end
 end
